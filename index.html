@@ -1,0 +1,779 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ольга Картавцева — дизайн штор и портьер</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --linen:#EDE7DD;
+    --linen-deep:#E1D8C8;
+    --ink:#2A2723;
+    --ink-soft:#544E45;
+    --clay:#9C4A3C;
+    --clay-deep:#7C3A2F;
+    --bottle:#3F4A3A;
+    --bottle-deep:#2E362A;
+    --brass:#A6874F;
+    --rose:#C08974;
+    --paper:#F7F3EA;
+
+    --serif: 'Fraunces', serif;
+    --sans: 'Manrope', sans-serif;
+
+    --container: 1180px;
+    --edge: clamp(24px, 5vw, 72px);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--linen);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  img,svg{ display:block; max-width:100%; }
+
+  a{ color:inherit; text-decoration:none; }
+
+  ::selection{ background:var(--clay); color:var(--paper); }
+
+  :focus-visible{
+    outline:2px solid var(--clay);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:var(--container);
+    margin-inline:auto;
+    padding-inline:var(--edge);
+  }
+
+  .eyebrow{
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--clay-deep);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1.5px;
+    background:var(--clay-deep);
+    display:inline-block;
+  }
+
+  h1,h2,h3{ font-family:var(--serif); font-weight:500; color:var(--ink); letter-spacing:-.01em; }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:14.5px;
+    letter-spacing:.02em;
+    padding:15px 28px;
+    border-radius:2px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1), background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .btn-primary{ background:var(--clay); color:var(--paper); }
+  .btn-primary:hover{ background:var(--clay-deep); transform:translateY(-2px); }
+  .btn-ghost{ background:transparent; color:var(--ink); border-color:rgba(42,39,35,.35); }
+  .btn-ghost:hover{ border-color:var(--ink); transform:translateY(-2px); }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:absolute; top:0; left:0; right:0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:28px var(--edge);
+  }
+  .logo{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:22px;
+    color:var(--paper);
+    letter-spacing:.01em;
+  }
+  .nav-links{
+    display:flex; align-items:center; gap:36px;
+    font-size:14px; font-weight:600; letter-spacing:.03em;
+    color:var(--paper);
+  }
+  .nav-links a{ position:relative; opacity:.88; transition:opacity .25s; }
+  .nav-links a:hover{ opacity:1; }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-6px; height:1px; width:0;
+    background:var(--paper); transition:width .3s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-phone{ font-size:13.5px; color:var(--paper); opacity:.9; }
+  @media (max-width:860px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:
+      radial-gradient(120% 100% at 50% 0%, #4a4137 0%, #2f2822 55%, #201b17 100%);
+  }
+  .hero-glow{
+    position:absolute; inset:0;
+    background:radial-gradient(60% 50% at 50% 38%, rgba(247,243,234,.16), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-content{
+    position:relative; z-index:20;
+    text-align:center;
+    padding-top:40px;
+    color:var(--paper);
+    opacity:0;
+    transform:translateY(14px);
+    animation:heroIn .9s cubic-bezier(.2,.7,.2,1) forwards;
+    animation-delay:1.05s;
+  }
+  @keyframes heroIn{ to{ opacity:1; transform:translateY(0); } }
+  .hero-eyebrow{
+    font-size:12.5px; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--rose); margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(44px, 8vw, 96px);
+    color:var(--paper);
+    line-height:1.02;
+  }
+  .hero-sub{
+    max-width:560px; margin:26px auto 0;
+    font-size:clamp(16px, 2vw, 19px);
+    color:#DAD3C6;
+    font-weight:400;
+  }
+  .hero-cta{ margin-top:38px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .hero .btn-ghost{ color:var(--paper); border-color:rgba(247,243,234,.4); }
+  .hero .btn-ghost:hover{ border-color:var(--paper); }
+
+  /* curtain panels */
+  .curtain{
+    position:absolute; inset:0; z-index:10;
+    display:flex;
+  }
+  .fold{
+    position:relative;
+    flex:1 1 0;
+    height:100%;
+    background:
+      repeating-linear-gradient(90deg,
+        rgba(255,255,255,.10) 0 3px,
+        rgba(0,0,0,.16) 3px 7px,
+        rgba(255,255,255,.03) 7px 14px);
+    box-shadow: inset 3px 0 10px rgba(0,0,0,.28), inset -3px 0 10px rgba(0,0,0,.1);
+  }
+  .fold:nth-child(1),.fold:nth-child(8){ background-color:var(--bottle-deep); }
+  .fold:nth-child(2),.fold:nth-child(7){ background-color:var(--bottle); }
+  .fold:nth-child(3),.fold:nth-child(6){ background-color:var(--clay-deep); }
+  .fold:nth-child(4),.fold:nth-child(5){ background-color:var(--clay); }
+
+  .fold:nth-child(1){ animation: openLeft 1.15s cubic-bezier(.65,0,.2,1) forwards; animation-delay:.62s; }
+  .fold:nth-child(2){ animation: openLeft 1.15s cubic-bezier(.65,0,.2,1) forwards; animation-delay:.5s; }
+  .fold:nth-child(3){ animation: openLeft 1.15s cubic-bezier(.65,0,.2,1) forwards; animation-delay:.38s; }
+  .fold:nth-child(4){ animation: openLeft 1.15s cubic-bezier(.65,0,.2,1) forwards; animation-delay:.28s; }
+  .fold:nth-child(5){ animation: openRight 1.15s cubic-bezier(.65,0,.2,1) forwards; animation-delay:.28s; }
+  .fold:nth-child(6){ animation: openRight 1.15s cubic-bezier(.65,0,.2,1) forwards; animation-delay:.38s; }
+  .fold:nth-child(7){ animation: openRight 1.15s cubic-bezier(.65,0,.2,1) forwards; animation-delay:.5s; }
+  .fold:nth-child(8){ animation: openRight 1.15s cubic-bezier(.65,0,.2,1) forwards; animation-delay:.62s; }
+
+  @keyframes openLeft{ to{ transform:translateX(-105%); } }
+  @keyframes openRight{ to{ transform:translateX(105%); } }
+
+  @media (prefers-reduced-motion: reduce){
+    .fold{ animation:none !important; display:none; }
+    .hero-content{ animation:none !important; opacity:1; transform:none; }
+  }
+
+  .scroll-cue{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+    z-index:20; color:var(--paper); opacity:.7;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+  }
+  .scroll-cue .line{ width:1px; height:34px; background:linear-gradient(var(--paper), transparent); animation:cueMove 2s ease-in-out infinite; }
+  @keyframes cueMove{ 0%,100%{ opacity:.4 } 50%{ opacity:1 } }
+
+  /* ---------- SCALLOP DIVIDER ---------- */
+  .scallop{
+    height:26px;
+    width:100%;
+  }
+  .scallop-to-linen{
+    background:
+      radial-gradient(circle at 13px 0, transparent 13px, var(--linen) 13.5px) repeat-x;
+    background-size:26px 26px;
+    background-color:transparent;
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+
+  section{ padding:118px 0; position:relative; }
+
+  /* ---------- ABOUT ---------- */
+  .about{ background:var(--linen); }
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:72px;
+    align-items:center;
+  }
+  .about-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    background:
+      linear-gradient(180deg, var(--linen-deep), var(--linen));
+    border:1px solid rgba(42,39,35,.12);
+    overflow:hidden;
+  }
+  .about-visual .drape{
+    position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(100deg,
+        rgba(156,74,60,.14) 0 26px,
+        rgba(63,74,58,.10) 26px 52px,
+        rgba(166,135,79,.12) 52px 78px);
+    mix-blend-mode:multiply;
+  }
+  .about-visual .initials{
+    position:absolute; bottom:26px; left:26px;
+    font-family:var(--serif); font-style:italic; font-size:20px; color:var(--ink-soft);
+  }
+  .about h2{ font-size:clamp(30px, 3.6vw, 44px); margin-top:16px; max-width:14ch; }
+  .about p{ margin-top:22px; max-width:52ch; color:var(--ink-soft); font-size:16.5px; }
+  .about-facts{
+    margin-top:38px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+    border-top:1px solid rgba(42,39,35,.16);
+    padding-top:24px;
+  }
+  .about-facts .fact-num{ font-family:var(--serif); font-size:30px; color:var(--clay-deep); }
+  .about-facts .fact-label{ font-size:13px; color:var(--ink-soft); margin-top:4px; }
+
+  @media (max-width:880px){
+    .about-grid{ grid-template-columns:1fr; gap:40px; }
+    .about-facts{ grid-template-columns:repeat(3,1fr); }
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process{ background:var(--linen-deep); }
+  .process .head{ max-width:640px; margin-bottom:64px; }
+  .process h2{ font-size:clamp(28px,3.4vw,40px); margin-top:16px; }
+  .steps{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    border-top:1px solid rgba(42,39,35,.18);
+  }
+  .step{
+    padding:30px 26px 0 0;
+    border-right:1px solid rgba(42,39,35,.18);
+    position:relative;
+  }
+  .step:last-child{ border-right:none; padding-right:0; }
+  .step-num{
+    font-family:var(--serif); font-style:italic; color:var(--brass); font-size:15px;
+  }
+  .step h3{ font-size:19px; margin-top:14px; font-weight:600; }
+  .step p{ margin-top:10px; font-size:14.5px; color:var(--ink-soft); }
+
+  @media (max-width:880px){
+    .steps{ grid-template-columns:1fr; }
+    .step{ border-right:none; border-bottom:1px solid rgba(42,39,35,.18); padding:26px 0; }
+  }
+
+  /* ---------- PORTFOLIO ---------- */
+  .portfolio{ background:var(--linen); }
+  .portfolio .head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:56px; flex-wrap:wrap; }
+  .portfolio h2{ font-size:clamp(28px,3.4vw,40px); margin-top:16px; max-width:14ch; }
+  .portfolio-note{ max-width:34ch; font-size:14.5px; color:var(--ink-soft); }
+
+  .grid-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  .card{
+    background:var(--paper);
+    border:1px solid rgba(42,39,35,.12);
+    overflow:hidden;
+    transition:transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease;
+  }
+  .card:hover{ transform:translateY(-6px); box-shadow:0 22px 40px -22px rgba(42,39,35,.35); }
+  .swatch{
+    aspect-ratio:5/4;
+    position:relative;
+    overflow:hidden;
+  }
+  .swatch::after{
+    content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(90deg, rgba(255,255,255,.14) 0 5px, rgba(0,0,0,.10) 5px 11px, transparent 11px 22px);
+  }
+  .swatch.c1{ background:linear-gradient(160deg,#B5695A,#7C3A2F); }
+  .swatch.c2{ background:linear-gradient(160deg,#5C6A54,#2E362A); }
+  .swatch.c3{ background:linear-gradient(160deg,#C6A46B,#8C6F3E); }
+  .swatch.c4{ background:linear-gradient(160deg,#CBB79B,#9C4A3C); }
+  .swatch.c5{ background:linear-gradient(160deg,#8E9683,#3F4A3A); }
+  .swatch.c6{ background:linear-gradient(160deg,#D3A88F,#A6874F); }
+  .card-body{ padding:20px 22px 24px; }
+  .card-body h3{ font-size:18px; font-weight:600; font-family:var(--sans); }
+  .card-tag{
+    margin-top:10px; font-size:12.5px; color:var(--ink-soft);
+    font-weight:600; letter-spacing:.02em;
+    padding-top:10px; border-top:1px dashed rgba(42,39,35,.25);
+  }
+
+  @media (max-width:980px){ .grid-cards{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:620px){ .grid-cards{ grid-template-columns:1fr; } }
+
+  /* ---------- PLEATS ---------- */
+  .pleats{ background:var(--bottle-deep); color:var(--paper); }
+  .pleats .eyebrow{ color:var(--rose); }
+  .pleats .eyebrow::before{ background:var(--rose); }
+  .pleats h2{ color:var(--paper); font-size:clamp(28px,3.4vw,40px); margin-top:16px; max-width:16ch; }
+  .pleats .head{ margin-bottom:56px; max-width:640px; }
+  .pleat-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:rgba(247,243,234,.14);
+    border:1px solid rgba(247,243,234,.14);
+  }
+  .pleat{
+    background:var(--bottle-deep);
+    padding:32px 26px;
+  }
+  .pleat svg{ width:40px; height:56px; }
+  .pleat h3{ font-size:17px; color:var(--paper); font-weight:600; font-family:var(--sans); margin-top:20px; }
+  .pleat p{ font-size:13.5px; color:#C9C2B5; margin-top:8px; }
+
+  @media (max-width:880px){ .pleat-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .pleat-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{ background:var(--linen); }
+  .t-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  .t-card{
+    background:var(--paper); border:1px solid rgba(42,39,35,.12);
+    padding:34px 28px;
+  }
+  .t-quote{ font-family:var(--serif); font-style:italic; font-size:18px; line-height:1.5; color:var(--ink); }
+  .t-who{ margin-top:22px; font-size:13.5px; color:var(--ink-soft); font-weight:600; }
+  @media (max-width:900px){ .t-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ background:var(--linen-deep); }
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
+  .contact h2{ font-size:clamp(30px,3.6vw,44px); margin-top:16px; max-width:14ch; }
+  .contact p{ margin-top:20px; color:var(--ink-soft); max-width:44ch; }
+  .contact-info{ margin-top:34px; display:flex; flex-direction:column; gap:12px; font-size:15px; }
+  .contact-info a{ font-weight:600; }
+  .contact-info a:hover{ color:var(--clay-deep); }
+
+  form{ display:flex; flex-direction:column; gap:18px; }
+  .field{ display:flex; flex-direction:column; gap:8px; }
+  .field label{ font-size:12.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); }
+  .field input, .field select, .field textarea{
+    background:var(--paper);
+    border:1px solid rgba(42,39,35,.25);
+    padding:13px 14px;
+    font-family:var(--sans); font-size:15px; color:var(--ink);
+    border-radius:1px;
+  }
+  .field textarea{ resize:vertical; min-height:88px; }
+  .field input:focus, .field select:focus, .field textarea:focus{ border-color:var(--clay); }
+  form .btn{ align-self:flex-start; margin-top:6px; }
+
+  .thanks{
+    display:none;
+    padding:40px 30px;
+    background:var(--paper);
+    border:1px solid rgba(42,39,35,.15);
+    text-align:center;
+  }
+  .thanks.show{ display:block; }
+  .thanks h3{ font-size:22px; }
+  .thanks p{ margin-top:10px; color:var(--ink-soft); }
+
+  @media (max-width:880px){ .contact-grid{ grid-template-columns:1fr; gap:44px; } }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:#201B17; color:#B9B1A2;
+    padding:56px var(--edge) 34px;
+  }
+  .footer-top{
+    max-width:var(--container); margin:0 auto;
+    display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap;
+    padding-bottom:34px; border-bottom:1px solid rgba(247,243,234,.14);
+  }
+  .footer-logo{ font-family:var(--serif); font-style:italic; font-size:24px; color:var(--paper); }
+  .footer-links{ display:flex; gap:30px; font-size:14px; }
+  .footer-links a:hover{ color:var(--paper); }
+  .footer-bottom{
+    max-width:var(--container); margin:22px auto 0;
+    display:flex; justify-content:space-between; font-size:12.5px; flex-wrap:wrap; gap:10px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="logo">Ольга Картавцева</div>
+    <div class="nav-links">
+      <a href="#about">О работе</a>
+      <a href="#process">Процесс</a>
+      <a href="#portfolio">Проекты</a>
+      <a href="#pleats">Складки</a>
+      <a href="#contact">Контакты</a>
+    </div>
+    <div class="nav-phone">+7 (999) 123-45-67</div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-glow"></div>
+    <div class="curtain" aria-hidden="true">
+      <div class="fold"></div><div class="fold"></div><div class="fold"></div><div class="fold"></div>
+      <div class="fold"></div><div class="fold"></div><div class="fold"></div><div class="fold"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Ателье штор и портьер · Москва</div>
+      <h1>Ольга<br>Картавцева</h1>
+      <p class="hero-sub">Подбираю ткань, складку и карниз под конкретное окно —
+        и шью так, чтобы свет в комнате слушался вас, а не наоборот.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Записаться на консультацию</a>
+        <a href="#portfolio" class="btn btn-ghost">Смотреть проекты</a>
+      </div>
+    </div>
+    <div class="scroll-cue"><span>вниз</span><span class="line"></span></div>
+  </header>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="about-visual reveal">
+        <div class="drape"></div>
+        <div class="initials">О. К., мастерская на Даниловской</div>
+      </div>
+      <div>
+        <span class="eyebrow reveal">О работе</span>
+        <h2 class="reveal">Ткань — это архитектура света</h2>
+        <p class="reveal">Пятнадцать лет я подбираю ткани для окон — от однокомнатных квартир
+          до загородных домов. Каждое окно диктует свою складку: где-то нужен плотный лён,
+          чтобы утром спалось до девяти, где-то — воздушный шёлк, чтобы свет ложился на пол
+          мягкими полосами.</p>
+        <p class="reveal">Работаю руками на всех этапах: снимаю размеры, выбираю ткань вместе
+          с вами, слежу за пошивом в собственной мастерской и сама вешаю готовые шторы —
+          поэтому драпировка всегда ложится так, как задумано.</p>
+        <div class="about-facts reveal">
+          <div><div class="fact-num">15 лет</div><div class="fact-label">в пошиве и подборе тканей</div></div>
+          <div><div class="fact-num">240+</div><div class="fact-label">окон одето с 2011 года</div></div>
+          <div><div class="fact-num">1</div><div class="fact-label">мастерская, без субподряда</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="scallop scallop-to-linen" style="background-color:var(--linen-deep)"></div>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow reveal">Как строится работа</span>
+        <h2 class="reveal">Четыре этапа — от первого замера до готовой драпировки</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">01</div>
+          <h3>Консультация</h3>
+          <p>Приезжаю на объект, смотрю окна, свет по часам дня и то, как вы живёте в комнате.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">02</div>
+          <h3>Ткань и складка</h3>
+          <p>Подбираем фактуру, плотность и тип складки — от карандашной до свободной волны.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">03</div>
+          <h3>Пошив</h3>
+          <p>Шью в своей мастерской — каждое полотно под конкретное окно, без готовых лекал.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">04</div>
+          <h3>Монтаж</h3>
+          <p>Вешаю сама, проверяю драпировку при дневном и вечернем свете, поправляю на месте.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio" id="portfolio">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="eyebrow reveal">Проекты</span>
+          <h2 class="reveal">Шесть окон, шесть решений</h2>
+        </div>
+        <p class="portfolio-note reveal">Карточки — как страницы книги образцов: ткань,
+          состав и тип складки для каждого объекта.</p>
+      </div>
+      <div class="grid-cards">
+        <div class="card reveal">
+          <div class="swatch c1"></div>
+          <div class="card-body">
+            <h3>Гостиная на Патриарших</h3>
+            <div class="card-tag">Лён 100% · складка на люверсах</div>
+          </div>
+        </div>
+        <div class="card reveal">
+          <div class="swatch c2"></div>
+          <div class="card-body">
+            <h3>Кабинет в лофте</h3>
+            <div class="card-tag">Плотный хлопок графит · волна</div>
+          </div>
+        </div>
+        <div class="card reveal">
+          <div class="swatch c3"></div>
+          <div class="card-body">
+            <h3>Спальня в Подмосковье</h3>
+            <div class="card-tag">Блэкаут + тюль · французская складка</div>
+          </div>
+        </div>
+        <div class="card reveal">
+          <div class="swatch c4"></div>
+          <div class="card-body">
+            <h3>Детская, Хамовники</h3>
+            <div class="card-tag">Хлопок с мелким рисунком · бант</div>
+          </div>
+        </div>
+        <div class="card reveal">
+          <div class="swatch c5"></div>
+          <div class="card-body">
+            <h3>Кухня-гостиная</h3>
+            <div class="card-tag">Лёгкий лён · английская складка</div>
+          </div>
+        </div>
+        <div class="card reveal">
+          <div class="swatch c6"></div>
+          <div class="card-body">
+            <h3>Терраса, загородный дом</h3>
+            <div class="card-tag">Уличная ткань · буфы</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLEATS -->
+  <section class="pleats" id="pleats">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow reveal">Типы складок</span>
+        <h2 class="reveal">Складка меняет характер ткани сильнее, чем цвет</h2>
+      </div>
+      <div class="pleat-grid">
+
+        <div class="pleat reveal">
+          <svg viewBox="0 0 48 56" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M6 4 V52 M15 4 V52 M24 4 V52 M33 4 V52 M42 4 V52"/>
+          </svg>
+          <h3>Карандашная</h3>
+          <p>Ровные частые складки одинаковой глубины — универсальный, спокойный вид.</p>
+        </div>
+
+        <div class="pleat reveal">
+          <svg viewBox="0 0 48 56" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M8 4 C8 14, 24 14, 24 4 M24 4 C24 14, 40 14, 40 4 M6 14 V52 M24 14 V52 M42 14 V52"/>
+          </svg>
+          <h3>Французская</h3>
+          <p>Сборка защипами у карниза, ниже — свободное падение. Классика для гостиных.</p>
+        </div>
+
+        <div class="pleat reveal">
+          <svg viewBox="0 0 48 56" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M10 4 V16 M24 4 V16 M38 4 V16 M14 16 V52 M24 16 V52 M34 16 V52"/>
+          </svg>
+          <h3>Английская</h3>
+          <p>Сдержанная плоская шапка складки — для строгих, «взрослых» интерьеров.</p>
+        </div>
+
+        <div class="pleat reveal">
+          <svg viewBox="0 0 48 56" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M4 10 C10 2,16 18,22 10 C28 2,34 18,40 10 C44 6,44 6,46 4 M4 10 Q4 30 6 52 M46 4 Q44 30 42 52"/>
+          </svg>
+          <h3>Волна (wave)</h3>
+          <p>Непрерывная плавная волна по всей длине — современный, ровный силуэт.</p>
+        </div>
+
+        <div class="pleat reveal">
+          <svg viewBox="0 0 48 56" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="10" cy="8" r="5"/><circle cx="24" cy="8" r="5"/><circle cx="38" cy="8" r="5"/>
+            <path d="M8 16 V52 M24 16 V52 M40 16 V52"/>
+          </svg>
+          <h3>Буфы</h3>
+          <p>Объёмные пышные сборки у карниза — для плотных однотонных тканей.</p>
+        </div>
+
+        <div class="pleat reveal">
+          <svg viewBox="0 0 48 56" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="10" cy="8" r="4"/><circle cx="24" cy="8" r="4"/><circle cx="38" cy="8" r="4"/>
+            <path d="M10 12 V52 M24 12 V52 M38 12 V52"/>
+          </svg>
+          <h3>Люверсы</h3>
+          <p>Кольца прямо на карнизе, мягкие вертикальные складки — минимализм без сборки.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="wrap">
+      <span class="eyebrow reveal">Отзывы</span>
+      <h2 class="reveal" style="margin-top:16px; font-size:clamp(28px,3.4vw,40px); max-width:18ch;">Что говорят те, чьи окна я одевала</h2>
+      <div class="t-grid" style="margin-top:56px;">
+        <div class="t-card reveal">
+          <p class="t-quote">«Ольга приехала с образцами тканей и сразу сказала, какая складка
+            подойдёт нашим окнам — раньше я об этом вообще не думала. Шторы шились три недели,
+            результат стоил ожидания».</p>
+          <div class="t-who">Марина, Хамовники</div>
+        </div>
+        <div class="t-card reveal">
+          <p class="t-quote">«Нужен был блэкаут в спальню, но чтобы не было ощущения бункера.
+            Подобрала лён с плотной подкладкой — сплю в темноте, а комната выглядит живой».</p>
+          <div class="t-who">Дмитрий, Одинцово</div>
+        </div>
+        <div class="t-card reveal">
+          <p class="t-quote">«Повесила шторы сама, лично проверила при вечернем свете и
+            подшила на пару сантиметров на месте. Такого внимания к деталям я не встречала».</p>
+          <div class="t-who">Анна, Патриаршие пруды</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="eyebrow reveal">Консультация</span>
+        <h2 class="reveal">Расскажите про окна — предложу решение за 2 дня</h2>
+        <p class="reveal">Выезжаю на замер по Москве и области. Для других городов — консультация
+          по видеосвязи и доставка готовых штор.</p>
+        <div class="contact-info reveal">
+          <span>Телефон / Telegram: <a href="tel:+79991234567">+7 (999) 123-45-67</a></span>
+          <span>Почта: <a href="mailto:ok.kartavtseva@example.com">ok.kartavtseva@example.com</a></span>
+          <span>Мастерская: Москва, Даниловский р-н</span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <form id="request-form">
+          <div class="field">
+            <label for="name">Имя</label>
+            <input id="name" type="text" placeholder="Как к вам обращаться" required>
+          </div>
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <input id="phone" type="tel" placeholder="+7 ___ ___-__-__" required>
+          </div>
+          <div class="field">
+            <label for="room">Тип помещения</label>
+            <select id="room">
+              <option>Гостиная</option>
+              <option>Спальня</option>
+              <option>Детская</option>
+              <option>Кухня</option>
+              <option>Кабинет</option>
+              <option>Другое</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="comment">Комментарий</label>
+            <textarea id="comment" placeholder="Размеры окна, пожелания по ткани или сроки"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Отправить заявку</button>
+        </form>
+        <div class="thanks" id="thanks">
+          <h3>Заявка получена</h3>
+          <p>Отвечу в течение дня по телефону, который вы указали.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-logo">Ольга Картавцева</div>
+      <div class="footer-links">
+        <a href="#about">О работе</a>
+        <a href="#portfolio">Проекты</a>
+        <a href="#pleats">Складки</a>
+        <a href="#contact">Контакты</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ольга Картавцева. Дизайн и пошив штор на заказ.</span>
+      <span>Москва · работаю по всей России</span>
+    </div>
+  </footer>
+
+<script>
+  // scroll reveal
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const items = document.querySelectorAll('.reveal');
+  if (reduceMotion) {
+    items.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(el => io.observe(el));
+  }
+
+  // contact form
+  const form = document.getElementById('request-form');
+  const thanks = document.getElementById('thanks');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    form.style.display = 'none';
+    thanks.classList.add('show');
+  });
+</script>
+</body>
+</html>
